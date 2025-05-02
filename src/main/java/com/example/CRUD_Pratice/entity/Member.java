@@ -11,7 +11,6 @@ import lombok.*;
 @NoArgsConstructor
 @Entity
 @Getter
-@Setter
 public class Member {
     @Id
     @GeneratedValue
