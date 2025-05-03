@@ -11,8 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
@@ -73,10 +72,11 @@ public class MemberController {
         return "redirect:/signup/"+ memberEntity.getId();
     }
     @GetMapping("/members/{id}/delete")
-    public String delete(@PathVariable Long id) {
+    public String delete(@PathVariable Long id, RedirectAttributes rttr) {
         Member target = MemberRepository.findById(id).orElse(null);
         if(target != null) {
             MemberRepository.delete(target);
+            rttr.addFlashAttribute("msg","삭제됐습니다!");
         }
         return "redirect:/members";
     }
