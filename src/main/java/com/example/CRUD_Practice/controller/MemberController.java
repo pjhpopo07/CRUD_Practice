@@ -1,10 +1,10 @@
-package com.example.CRUD_Pratice.controller;
+package com.example.CRUD_Practice.controller;
 
 
 import org.springframework.ui.Model;
-import com.example.CRUD_Pratice.dto.MemberForm;
-import com.example.CRUD_Pratice.entity.Member;
-import com.example.CRUD_Pratice.repository.MemberRepository;
+import com.example.CRUD_Practice.dto.MemberForm;
+import com.example.CRUD_Practice.entity.Member;
+import com.example.CRUD_Practice.repository.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,10 +52,32 @@ public class MemberController {
         return "articles/index";
     }
 
-    @GetMapping("/members/{id}/edit")
+    @GetMapping("/members/{id}")
     public String edit(@PathVariable Long id, Model model) {
         Member memberEntity = MemberRepository.findById(id).orElse(null);
         model.addAttribute("member", memberEntity);
         return "articles/edit";
+    }
+
+    @PostMapping("/members/update")
+    public String updateMember(MemberForm form) {
+        Member memberEntity = form.toEntity();
+        log.info(memberEntity.toString());
+
+        Member target= MemberRepository.findById(memberEntity.getId()).orElse(null);
+
+        if(target != null) {
+            MemberRepository.save(memberEntity);
+        }
+        log.info(memberEntity.toString());
+        return "redirect:/signup/"+ memberEntity.getId();
+    }
+    @GetMapping("/members/{id}/delete")
+    public String delete(@PathVariable Long id) {
+        Member target = MemberRepository.findById(id).orElse(null);
+        if(target != null) {
+            MemberRepository.delete(target);
+        }
+        return "redirect:/members";
     }
 }

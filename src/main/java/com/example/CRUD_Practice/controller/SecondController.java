@@ -1,4 +1,4 @@
-package com.example.CRUD_Pratice.controller;
+package com.example.CRUD_Practice.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

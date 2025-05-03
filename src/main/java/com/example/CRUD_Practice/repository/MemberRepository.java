@@ -1,6 +1,6 @@
-package com.example.CRUD_Pratice.repository;
+package com.example.CRUD_Practice.repository;
 
-import com.example.CRUD_Pratice.entity.Member;
+import com.example.CRUD_Practice.entity.Member;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.ArrayList;

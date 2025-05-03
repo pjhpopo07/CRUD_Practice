@@ -1,4 +1,4 @@
-package com.example.CRUD_Pratice.entity;
+package com.example.CRUD_Practice.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
